@@ -11,7 +11,7 @@ int main(void)
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
 	/* your code goes there */
-	char m[] = n > 0 ? "is positive" : n == 0 ? "is zero" : n < 0 ? "is negative" : "" 
-	printf("%d is %s\n", n, m)
+	char m[] = n > 0 ? "is positive" : n == 0 ? "is zero" : n < 0 ? "is negative" : ' '; 
+	printf("%d is %s\n", n, m);
 	return (0);
 }
