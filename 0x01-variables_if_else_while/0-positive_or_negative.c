@@ -11,21 +11,18 @@ int main(void)
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
 	/* your code goes there */
-	char* m;
-
 	if (n > 0)
-	{
-		m = "is positive";
+	{		
+		printf("%d is positive", n);
 	}
 	else if (n == 0)
 	{
-		m = "is zero";
+		printf("%d is zero", n);
 	}
 	else
 	{
-		m = "is negative";
+		printf("%d is negative", n);
 	}
 
-	printf("%d is %s\n", n, m);
 	return (0);
 }
