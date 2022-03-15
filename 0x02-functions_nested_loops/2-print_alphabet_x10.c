@@ -18,4 +18,5 @@ int print_alphabet_x10(void)
 		putchar(10);
 		j++;
 	}
+	return (0);
 }
