@@ -8,7 +8,7 @@
  */
 int _abs(int n)
 {
-	int value = n * ((n > 0) - (v < 0));
+	int value = n * ((n > 0) - (n < 0));
 
 	return (value);
 }
