@@ -8,7 +8,7 @@
  */
 int print_last_digit(int n)
 {
-	int absVal = n * ((n > 0) - (n < 0))
+	int absVal = n * ((n > 0) - (n < 0));
 	int value = absVal % 10;
 
 	
