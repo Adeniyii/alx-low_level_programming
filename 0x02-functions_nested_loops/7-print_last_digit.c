@@ -3,15 +3,21 @@
 
 /**
  * print_last_digit - Returns the last value of a number
- * @n: The character to be formatted
+ * @nld: The character to be formatted
  *
- * Return: The absolutee value of (n)
+ * Return: The value of the last digit
  */
-int print_last_digit(int n)
+int print_last_digit(int nld)
 {
-	if (n < 0)
-		n = n * (-1);
+	int pld;
 
-	_putchar((n % 10) + '0');
-	return (n % 10);
+	pld = (nld % 10);
+
+	if (pld < 0)
+	{
+		pld = (-1 * pld);
+	}
+
+	_putchar(pld + '0');
+	return (pld);
 }
