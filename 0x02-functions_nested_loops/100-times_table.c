@@ -1,7 +1,8 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
  * print_times_table - prints the n times table, starting with 0
+ * @n Factor of multiplication table
  */
 void print_times_table(int n)
 {
@@ -9,28 +10,20 @@ void print_times_table(int n)
 
 	for (rone = 0; rone <= n; rone++)
 	{
-		_putchar('0');
-		_putchar(',');
-		_putchar(' ');
+		printf("0, ");
 		for (cone = 1; cone <= n; cone++)
 		{
 			d = (rone * cone);
-			if ((d / 10) > 0)
+			if (d < 10)
 			{
-				_putchar((d / 10) + '0');
+				printf(" ");
 			}
-			else
-			{
-				_putchar(' ');
-			}
-			_putchar((d % 10) + '0');
-
+			printf("%d", d);
 			if (cone < n)
 			{
-				_putchar(',');
-				_putchar(' ');
+				printf(", ");
 			}
 		}
-		_putchar('\n');
+		printf("\n");
 	}
 }
