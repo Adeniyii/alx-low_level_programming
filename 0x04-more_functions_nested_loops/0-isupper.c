@@ -10,7 +10,7 @@ int _isupper(int c)
 {
 	char asciichar = c;
 
-	if ((asciichar >= 65) && (asciichar < 90))
+	if ((asciichar >= 65) && (asciichar <= 90))
 		return (1);
 	return (0);
 }
