@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * print_diagonal - print numbers from 0 - 9, excluding 2 and 4.
- * @n: .
+ * print_diagonal - print diagonal lines to th terminal.
+ * @n: depth of diagonal.
  */
 void print_diagonal(int n)
 {
