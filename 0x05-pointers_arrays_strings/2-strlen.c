@@ -6,7 +6,7 @@
  *
  * Return: Length of the string.
  */
-int _strlen(int *s)
+int _strlen(char *s)
 {
 	int count = 0;
 	int cursor = 0;
