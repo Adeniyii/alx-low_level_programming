@@ -2,7 +2,8 @@
 
 /**
  * print_array - print the contents of an array to stdout
- * @str: the address of the string.
+ * @a: the address of the array.
+ * @n: the number of items to print.
  */
 void print_array(int *a, int n)
 {
