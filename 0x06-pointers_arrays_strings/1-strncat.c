@@ -19,6 +19,9 @@ char *_strncat(char *dest, char *src, int n)
 
 	for (i = 0; i < n; i++)
 	{
+		if (*(src + i) == '\0')
+			break;
+
 		*(dest + cursor) = *(src + i);
 		cursor++;
 	}
