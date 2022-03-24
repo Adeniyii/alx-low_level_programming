@@ -19,6 +19,9 @@ char *cap_string(char *text)
 			    (text[i - 1] >= 58 && text[i - 1] <= 63) ||
 			    (text[i - 1] >= 7 && text[i - 1] <= 13))
 			{
+				if (text[i - 1] == 45)
+					continue;
+
 				text[i] = text[i] - 32;
 			}
 		}
