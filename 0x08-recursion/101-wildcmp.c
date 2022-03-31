@@ -9,5 +9,5 @@
  */
 int wildcmp(char *s1, char *s2)
 {
-	return (0);
+	return (s1 + (int)s2);
 }
