@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
+#include <string.h>
 
 /**
  * _strdup - copy a string to new mem address
@@ -17,7 +18,7 @@ char *_strdup(char *str)
 		return (NULL);
 	}
 
-	ptr = (char *)malloc(100);
+	ptr = (char *)malloc(strlen(str));
 
 	if (ptr == NULL)
 	{
