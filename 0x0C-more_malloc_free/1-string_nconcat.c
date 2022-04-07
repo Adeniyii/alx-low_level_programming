@@ -14,7 +14,7 @@ unsigned int min(unsigned int a, unsigned int b);
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int i, j, target_string_length = 0;
+	unsigned int i = 0, j = 0, target_string_length = 1;
 	char *ptr;
 
 	if (s1 != NULL)
@@ -23,7 +23,12 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	if (s2 != NULL)
 		target_string_length += min(strlen(s2), n);
 
-	ptr = malloc(target_string_length + 1);
+	ptr = malloc(target_string_length);
+
+	if (ptr == NULL)
+	{
+		return NULL;
+	}
 
 	if (s1 != NULL)
 	{
