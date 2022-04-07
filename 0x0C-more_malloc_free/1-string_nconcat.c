@@ -10,6 +10,7 @@ unsigned int min(unsigned int a, unsigned int b);
  *
  * @s1: first string.
  * @s2: second string.
+ * @n: max bytes to be copied from s2.
  * Return: (char*) address of concatenated string
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
@@ -59,5 +60,5 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
  */
 unsigned int min(unsigned int a, unsigned int b)
 {
-	return (a < b) ? (a) : (b);
+	return ((a < b) ? a : b);
 }
