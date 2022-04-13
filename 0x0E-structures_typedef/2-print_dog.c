@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- * init_dog - initialize the dog object
+ * print_dog - initialize the dog object
  *
  * @d: address of declared dog variable
  */
