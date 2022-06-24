@@ -1,9 +1,11 @@
 #include "variadic_functions.h"
+#include <stdarg.h>
+#include <stdlib.h>
 
 /**
- * print_numbers - prints numbers given as parameters
- * @separator: string to be printed between numbers
- * @n: number of integers passed to the function
+ * print_numbers - print variable arguments delimited by given separator
+ * @separator: chars to be printed between numbers
+ * @n: length of variable arguments
  */
 void print_numbers(const char *separator, const unsigned int n, ...)
 {
