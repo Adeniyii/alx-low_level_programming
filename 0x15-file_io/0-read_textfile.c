@@ -3,7 +3,7 @@
 #include <fcntl.h>
 
 /**
- * @brief print file contents to stdout
+ * read_textfile - print file contents to stdout
  * @filename: name of file to read from
  * @letters: no of bytes to write to stdout
  *
