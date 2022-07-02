@@ -14,7 +14,7 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 	unsigned long int num = n ^ m;
 	unsigned int count;
 
-	count = bitty(1, num);
+	count = count_bits(1, num);
 	return (count);
 }
 
@@ -31,7 +31,7 @@ int count_bits(unsigned long int mask, unsigned long int n)
 
 	if (mask > 0)
 	{
-		int result = bitty(mask << 1, n);
+		int result = count_bits(mask << 1, n);
 
 		if ((mask & n) > 0)
 		{
