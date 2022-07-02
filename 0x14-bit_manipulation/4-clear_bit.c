@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * @brief turn off bit at given index
+ * clear_bit - turn off bit at given index
  *
  * @n: int to be modified
  * @index: index of bit to turn off
@@ -14,7 +14,7 @@ int clear_bit(unsigned long int *n, unsigned int index)
 	if (index > 63)
 		return (-1);
 
-	*n = *n & mask;
+	*n = (*n & mask);
 
 	return (1);
 }
