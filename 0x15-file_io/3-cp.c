@@ -112,9 +112,9 @@ void close_files(int count, ...)
 
 	while (i < count)
 	{
-		i++;
 		fd = va_arg(file_list, int);
 		status = close(fd);
+		i++;
 
 		if (status < 0)
 		{
