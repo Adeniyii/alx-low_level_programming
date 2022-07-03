@@ -8,6 +8,13 @@ void open_files(int *fd_from, int *fd_to, char **av);
 void write_file(int fd_from, int fd_to, char **av);
 void close_files(int count, ...);
 
+/**
+ * main - Entry point
+ *
+ * @ac: number of command-line arguments
+ * @av: list of command-line arguments
+ * Return: Always (1)
+ */
 int main(int ac, char **av)
 {
 	int fd_to;
@@ -27,6 +34,13 @@ int main(int ac, char **av)
 	return (1);
 }
 
+/**
+ * open_files - Open destination and source files
+ *
+ * @fd_from: pointer to variable to store source file descriptor
+ * @fd_to: pointer to variable to store destination file descriptor
+ * @av: list of command-line arguments
+ */
 void open_files(int *fd_from, int *fd_to, char **av)
 {
 	*fd_from = open(av[1], O_RDONLY | O_EXCL);
@@ -44,6 +58,13 @@ void open_files(int *fd_from, int *fd_to, char **av)
 	}
 }
 
+/**
+ * write_file - copy content from fd_from to fd_to
+ *
+ * @fd_from: file descriptor to copy content from
+ * @fd_to: file descriptor to write content to
+ * @av: list of command-line arguments
+ */
 void write_file(int fd_from, int fd_to, char **av)
 {
 	int exit_status;
@@ -51,8 +72,7 @@ void write_file(int fd_from, int fd_to, char **av)
 	int STREAM_SIZE = 1024;
 	void *buf = malloc(STREAM_SIZE);
 
-	do
-	{
+	do {
 		b_read = read(fd_from, buf, STREAM_SIZE);
 		b_write = write(fd_to, buf, b_read);
 	} while (b_read > 0 && b_write > 0);
@@ -72,6 +92,12 @@ void write_file(int fd_from, int fd_to, char **av)
 	exit_status ? exit(exit_status) : NULL;
 }
 
+/**
+ * close_files - Close all open files passed as variable args
+ *
+ * @count: no of files to close
+ * @param ...
+ */
 void close_files(int count, ...)
 {
 	int i = 0;
