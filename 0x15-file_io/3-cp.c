@@ -42,7 +42,7 @@ int main(int ac, char **av)
 void open_files(int *fd_from, int *fd_to, char **av)
 {
 	*fd_from = open(av[1], O_RDONLY | O_EXCL);
-	*fd_to = open(av[2], O_RDWR | O_CREAT | O_TRUNC, 00664);
+	*fd_to = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	if (*fd_from < 0)
 	{
@@ -72,6 +72,7 @@ void write_file(int fd_from, int fd_to, char **av)
 	if (buf == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
+		free(buf);
 		exit(99);
 	}
 
