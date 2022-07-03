@@ -69,11 +69,15 @@ void write_file(int fd_from, int fd_to, char **av)
 	size_t STREAM_SIZE = 532;
 	void *buf = malloc(STREAM_SIZE);
 
+	if (buf == NULL)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
+		exit(99);
+	}
+
 	do {
 		b_read = read(fd_from, buf, STREAM_SIZE);
 		b_write = write(fd_to, buf, b_read);
-		free(buf);
-		buf = malloc(STREAM_SIZE);
 	} while (b_read > 0 && b_write > 0);
 
 	if (b_read < 0)
