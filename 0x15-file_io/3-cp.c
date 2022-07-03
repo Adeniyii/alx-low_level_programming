@@ -66,7 +66,7 @@ void open_files(int *fd_from, int *fd_to, char **av)
 void write_file(int fd_from, int fd_to, char **av)
 {
 	ssize_t b_read, b_write;
-	size_t STREAM_SIZE = 532;
+	size_t STREAM_SIZE = 1024;
 	void *buf = malloc(STREAM_SIZE);
 
 	if (buf == NULL)
