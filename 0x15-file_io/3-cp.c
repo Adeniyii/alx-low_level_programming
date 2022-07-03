@@ -29,7 +29,7 @@ int main(int ac, char **av)
 	write_file(fd_from, fd_to, av);
 	close_files(2, fd_from, fd_to);
 
-	return (1);
+	return (0);
 }
 
 /**
