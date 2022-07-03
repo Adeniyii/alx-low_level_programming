@@ -46,12 +46,12 @@ void open_files(int *fd_from, int *fd_to, char **av)
 	*fd_from = open(av[1], O_RDONLY | O_EXCL);
 	*fd_to = open(av[2], O_RDWR | O_CREAT | O_TRUNC, 00664);
 
-	if (fd_from < 0)
+	if (*fd_from < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 		exit(98);
 	}
-	else if (fd_to < 0)
+	else if (*fd_to < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 		exit(99);
@@ -66,8 +66,7 @@ void open_files(int *fd_from, int *fd_to, char **av)
  * @av: list of command-line arguments
  */
 void write_file(int fd_from, int fd_to, char **av)
-{
-	int exit_status;
+	{
 	ssize_t b_read, b_write;
 	int STREAM_SIZE = 1024;
 	void *buf = malloc(STREAM_SIZE);
@@ -80,16 +79,17 @@ void write_file(int fd_from, int fd_to, char **av)
 	if (b_read < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
-		exit_status = 98;
+		free(buf);
+		exit(98);
 	}
 	else if (b_write < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
-		exit_status = 99;
+		free(buf);
+		exit(99);
 	}
 
 	free(buf);
-	exit_status ? exit(exit_status) : NULL;
 }
 
 /**
@@ -100,7 +100,7 @@ void write_file(int fd_from, int fd_to, char **av)
  */
 void close_files(int count, ...)
 {
-	int i = 0;
+	int i = 0, fd, status;
 	va_list file_list;
 
 	va_start(file_list, count);
@@ -108,8 +108,8 @@ void close_files(int count, ...)
 	while (i < count)
 	{
 		i++;
-		int fd = va_arg(file_list, int);
-		int status = close(fd);
+		fd = va_arg(file_list, int);
+		status = close(fd);
 
 		if (status < 0)
 		{
