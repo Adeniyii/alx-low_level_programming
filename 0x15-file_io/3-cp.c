@@ -17,13 +17,11 @@ void close_files(int count, ...);
  */
 int main(int ac, char **av)
 {
-	int fd_to;
-	int fd_from;
-	char *USAGE = "Usage: cp file_from file_to\n";
+	int fd_to, fd_from;
 
 	if (ac < 3)
 	{
-		write(STDERR_FILENO, USAGE, strlen(USAGE));
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 
@@ -66,14 +64,18 @@ void open_files(int *fd_from, int *fd_to, char **av)
  * @av: list of command-line arguments
  */
 void write_file(int fd_from, int fd_to, char **av)
-	{
+{
 	ssize_t b_read, b_write;
-	int STREAM_SIZE = 1024;
+	size_t STREAM_SIZE = 532;
 	void *buf = malloc(STREAM_SIZE);
 
 	do {
 		b_read = read(fd_from, buf, STREAM_SIZE);
 		b_write = write(fd_to, buf, b_read);
+		free(buf);
+		buf = malloc(STREAM_SIZE);
+		printf("read: %lo\n", b_read);
+		printf("write: %lo\n", b_write);
 	} while (b_read > 0 && b_write > 0);
 
 	if (b_read < 0)
