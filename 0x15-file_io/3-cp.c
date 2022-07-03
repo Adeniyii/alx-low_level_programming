@@ -74,8 +74,6 @@ void write_file(int fd_from, int fd_to, char **av)
 		b_write = write(fd_to, buf, b_read);
 		free(buf);
 		buf = malloc(STREAM_SIZE);
-		printf("read: %lo\n", b_read);
-		printf("write: %lo\n", b_write);
 	} while (b_read > 0 && b_write > 0);
 
 	if (b_read < 0)
