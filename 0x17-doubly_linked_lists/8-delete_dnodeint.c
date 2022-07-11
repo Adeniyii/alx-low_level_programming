@@ -1,6 +1,8 @@
 #include "lists.h"
 #include <stdlib.h>
 
+size_t dlistint_len(const dlistint_t *h);
+
 /**
  * delete_dnodeint_at_index - delete node at index idx
  *
@@ -14,7 +16,7 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	dlistint_t *tmp;
 	unsigned int i = 0;
 
-	if (!head)
+	if (!head || index >= dlistint_len(*head))
 		return (-1);
 
 	while (ptr)
@@ -38,4 +40,26 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 		i++;
 	}
 	return (-1);
+}
+
+/**
+ * dlistint_len - returns the number of nodes in a doubly linked list
+ * @h: pointer to the list
+ *
+ * Return: number of nodes
+ */
+size_t dlistint_len(const dlistint_t *h)
+{
+	size_t nodes = 0;
+
+	if (!h)
+		return (0);
+
+	while (h)
+	{
+		nodes++;
+		h = h->next;
+	}
+
+	return (nodes);
 }
