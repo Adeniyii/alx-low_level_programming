@@ -21,7 +21,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (!new_hash_node)
 		return (0);
 
-	value_cpy = malloc(sizeof(char) * strlen(value));
+	value_cpy = malloc((sizeof(char) * strlen(value)) + 1);
 
 	if (!value_cpy)
 	{
