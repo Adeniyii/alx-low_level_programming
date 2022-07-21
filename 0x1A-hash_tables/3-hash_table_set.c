@@ -3,55 +3,71 @@
 #include <stdio.h>
 #include <string.h>
 
-/**
- * hash_table_set - Add or update an element in a hash table.
- * @ht: A pointer to the hash table.
- * @key: The key to add - cannot be an empty string.
- * @value: The value associated with key.
- *
- * Return: Upon failure - 0.
- *         Otherwise - 1.
- */
+int set_duplicate_key(const char *key, const char *value, hash_node_t *tmp);
 
+/**
+ * hash_table_set - adds an element to the hash table
+ * @ht: hash table to update
+ * @key: the key to be used for a hash table entry
+ * @value: value associated with the key @key
+ * Return: int (1) if successful, (0) otherwise
+ */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	hash_node_t *new;
-	char *value_copy;
-	unsigned long int index, i;
+	size_t index;
+	hash_node_t *new_hash_node;
 
-	if (ht == NULL || key == NULL || *key == '\0' || value == NULL)
-		return (0);
-
-	value_copy = strdup(value);
-	if (value_copy == NULL)
+	if (!key || *key == '\0' || !ht || !value)
 		return (0);
 
 	index = key_index((const unsigned char *)key, ht->size);
-	for (i = index; ht->array[i]; i++)
+	if (set_duplicate_key(key, value, ht->array[index]))
+		return (1);
+
+	new_hash_node = (hash_node_t *)malloc(sizeof(hash_node_t));
+	if (!new_hash_node)
+		return (0);
+
+	new_hash_node->key = (char *)key;
+	new_hash_node->value = strdup(value);
+	new_hash_node->next = NULL;
+
+	if (new_hash_node->value == NULL)
 	{
-		if (strcmp(ht->array[i]->key, key) == 0)
+		free(new_hash_node->value);
+		free(new_hash_node);
+		return (0);
+	}
+
+	if (!(ht->array[index]))
+	{
+		ht->array[index] = new_hash_node;
+		return (1);
+	}
+
+	new_hash_node->next = ht->array[index];
+	ht->array[index] = new_hash_node;
+	return (1);
+}
+
+/**
+ * set_duplicate_key - Set new value if key already exists in table
+ * @tmp: pointer to linked list head of current bucket
+ * @key: the key to be used for a hash table entry
+ * @value: value associated with the key @key
+ * Return: int (1) if successful, (0) otherwise
+ */
+int set_duplicate_key(const char *key, const char *value, hash_node_t *tmp)
+{
+	while (tmp)
+	{
+		if (strcmp(tmp->key, key) == 0)
 		{
-			free(ht->array[i]->value);
-			ht->array[i]->value = value_copy;
+			free(tmp->value);
+			tmp->value = (char *)value;
 			return (1);
 		}
+		tmp = tmp->next;
 	}
-
-	new = malloc(sizeof(hash_node_t));
-	if (new == NULL)
-	{
-		free(value_copy);
-		return (0);
-	}
-	new->key = strdup(key);
-	if (new->key == NULL)
-	{
-		free(new);
-		return (0);
-	}
-	new->value = value_copy;
-	new->next = ht->array[index];
-	ht->array[index] = new;
-
-	return (1);
+	return (0);
 }
