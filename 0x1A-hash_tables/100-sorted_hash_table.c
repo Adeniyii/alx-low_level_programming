@@ -43,6 +43,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 
 	index = key_index((const unsigned char *)key, ht->size);
 	new_node = bucket_create(key, value);
+	if (index >= ht->size)
+		return (0);
 
 	ptr = ht->array[index];
 	while (ptr)
@@ -51,6 +53,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		{
 			free(ptr->value);
 			ptr->value = new_node->value;
+			free(new_node->key);
 			free(new_node);
 			return (1);
 		}
@@ -104,6 +107,9 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 		return (NULL);
 
 	index = key_index((const unsigned char *)key, ht->size);
+	if (index >= ht->size)
+		return (NULL);
+
 	ptr = ht->array[index];
 
 	while (ptr)
@@ -134,6 +140,7 @@ void shash_table_delete(shash_table_t *ht)
 		ptr = tmp->snext;
 
 		free(tmp->value);
+		free(tmp->key);
 		free(tmp);
 
 		tmp = ptr;
@@ -201,7 +208,7 @@ void shash_table_print_rev(const shash_table_t *ht)
  */
 shash_node_t *bucket_create(const char *key, const char *value)
 {
-	char *value_cpy;
+	char *value_cpy, *key_cpy;
 	shash_node_t *new_node = malloc(sizeof(shash_node_t));
 
 	if (new_node == NULL)
@@ -213,11 +220,18 @@ shash_node_t *bucket_create(const char *key, const char *value)
 		free(new_node);
 		return (NULL);
 	}
+	key_cpy = strdup(key);
+	if (key_cpy == NULL)
+	{
+		free(value_cpy);
+		free(new_node);
+		return (NULL);
+	}
 
 	new_node->next = NULL;
 	new_node->snext = NULL;
 	new_node->sprev = NULL;
-	new_node->key = (char *)key;
+	new_node->key = key_cpy;
 	new_node->value = value_cpy;
 
 	return (new_node);

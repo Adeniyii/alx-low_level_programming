@@ -23,6 +23,8 @@ int main(void)
 	shash_table_print(ht);
 	shash_table_set(ht, "z", "4");
 	shash_table_print(ht);
+	shash_table_set(ht, "z", "repl");
+	shash_table_print(ht);
 	shash_table_set(ht, "n", "5");
 	shash_table_print(ht);
 	shash_table_set(ht, "a", "6");
