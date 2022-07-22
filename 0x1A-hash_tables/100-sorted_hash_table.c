@@ -43,13 +43,10 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 
 	index = key_index((const unsigned char *)key, ht->size);
 	new_node = bucket_create(key, value);
-	new_node->next = ht->array[index];
-	ht->array[index] = new_node;
-	ptr = ht->shead;
 
+	ptr = ht->array[index];
 	while (ptr)
 	{
-
 		if (strcmp(ptr->key, new_node->key) == 0)
 		{
 			free(ptr->value);
@@ -57,7 +54,14 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 			free(new_node);
 			return (1);
 		}
+		ptr = ptr->next;
+	}
 
+	new_node->next = ht->array[index];
+	ht->array[index] = new_node;
+	ptr = ht->shead;
+	while (ptr)
+	{
 		if (strcmp(ptr->key, new_node->key) > 0)
 		{
 			new_node->snext = ptr;
