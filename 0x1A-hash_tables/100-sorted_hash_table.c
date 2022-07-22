@@ -42,10 +42,10 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		return (0);
 
 	index = key_index((const unsigned char *)key, ht->size);
-	new_node = bucket_create(key, value);
 	if (index >= ht->size)
 		return (0);
 
+	new_node = bucket_create(key, value);
 	ptr = ht->array[index];
 	while (ptr)
 	{
