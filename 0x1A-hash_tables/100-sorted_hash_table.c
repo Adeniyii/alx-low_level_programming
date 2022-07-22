@@ -49,7 +49,16 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 
 	while (ptr)
 	{
-		if (strcmp(ptr->key, new_node->key) >= 0)
+
+		if (strcmp(ptr->key, new_node->key) == 0)
+		{
+			free(ptr->value);
+			ptr->value = new_node->value;
+			free(new_node);
+			return (1);
+		}
+
+		if (strcmp(ptr->key, new_node->key) > 0)
 		{
 			new_node->snext = ptr;
 			new_node->sprev = ptr->sprev;
