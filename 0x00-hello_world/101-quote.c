@@ -14,7 +14,7 @@ int main(void)
 	while (*(text + count))
 		count++;
 
-	write(STDERR_FILENO, text, count + 1);
+	write(STDERR_FILENO, text, count);
 
 	return (1);
 }
