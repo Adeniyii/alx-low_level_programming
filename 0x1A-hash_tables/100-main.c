@@ -11,6 +11,7 @@
 int main(void)
 {
 	shash_table_t *ht;
+	char *val;
 
 	ht = shash_table_create(1024);
 	shash_table_set(ht, "y", "0");
@@ -32,6 +33,8 @@ int main(void)
 	shash_table_set(ht, "m", "7");
 	shash_table_print(ht);
 	shash_table_print_rev(ht);
+	val = shash_table_get(ht, "y");
+	printf("value: %s\n", val);
 	shash_table_delete(ht);
 	return (EXIT_SUCCESS);
 }

@@ -12,9 +12,9 @@ char encodeChar(char min, char max, char currChar);
  */
 char *rot13(char *text)
 {
+	int i;
 	const int MIN_UPPER = 65, MAX_UPPER = 90;
 	const int MIN_LOWER = 97, MAX_LOWER = 122;
-	int i;
 
 	for (i = 0; text[i] != '\0'; i++)
 	{
@@ -25,6 +25,10 @@ char *rot13(char *text)
 		else if ((text[i] >= MIN_LOWER && text[i] <= MAX_LOWER))
 		{
 			text[i] = encodeChar(MIN_LOWER, MAX_LOWER, text[i]);
+		}
+		else
+		{
+			continue;
 		}
 	}
 	return (text);
