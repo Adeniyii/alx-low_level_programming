@@ -6,14 +6,10 @@
  */
 void _puts(char *str)
 {
-	int count = 0;
-	int cursor = 0;
-
-	while (*(str + cursor) != 0)
+	while (*str)
 	{
-		_putchar(*(str + cursor));
-		cursor++;
-		count++;
+		_putchar(*str);
+		str++;
 	}
 	_putchar(10);
 }
