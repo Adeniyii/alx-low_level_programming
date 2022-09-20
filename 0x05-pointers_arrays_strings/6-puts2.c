@@ -11,7 +11,7 @@ void puts2(char *str)
 	while (*(str + cursor) != 0)
 	{
 		_putchar(*(str + cursor));
-		if (*(str + cursor + 1) == 0)
+		if (*(str + cursor + 1) == 0) /* check if nect char is '\0' */
 			break;
 
 		cursor += 2;
