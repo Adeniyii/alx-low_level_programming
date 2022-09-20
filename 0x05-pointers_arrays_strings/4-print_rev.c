@@ -6,12 +6,12 @@
  */
 void print_rev(char *str)
 {
-	int count = 1; /* starting from 1 to account for '\0' */
+	int count = 0;
 
 	while (*(str++))
 		count++;
 
-	--str; /* skip newline from end of string */
+	--str; /* skip '\0' from end of string */
 	while (count--)
 		_putchar(*(--str));
 
