@@ -11,6 +11,7 @@ void print_rev(char *str)
 	while (*(str++))
 		count++;
 
+	--str; /* skip newline from end of string */
 	while (count--)
 		_putchar(*(--str));
 
