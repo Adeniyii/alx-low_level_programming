@@ -37,6 +37,9 @@ char *cap_string(char *text)
 
 /**
  * check_is_lower - check if char is a lower-case character.
+ * @c: char to evaluate.
+ *
+ * Return: 1 if lowercase, 0 otherwise.
  */
 int check_is_lower(char c)
 {
@@ -48,11 +51,15 @@ int check_is_lower(char c)
 
 /**
  * check_is_separator - check if char is a specified separator.
+ * @c: char to evaluate.
+ *
+ * Return: 1 if separator, 0 otherwise.
  */
 int check_is_separator(char c)
 {
-	if (c == 10 || c == 9 || c == 32 || c == 33 || c == 34 || c == 40 ||
-	    c == 41 || c == 44 || c == 46 || c == 59 || c == 63 || c == 123 || c == 125)
+	if (c == 10 || c == 9 || c == 32 || c == 33 ||
+	    c == 34 || c == 40 || c == 41 || c == 44 || c == 46 ||
+	    c == 59 || c == 63 || c == 123 || c == 125)
 		return (1);
 
 	return (0);
