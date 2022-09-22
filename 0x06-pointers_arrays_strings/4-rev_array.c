@@ -3,17 +3,17 @@
 /**
  * reverse_array - reverse an array of n items
  * @a: first comparison string.
- * @n: second comparison string.
+ * @n: length of array.
  */
 void reverse_array(int *a, int n)
 {
-	int i, x;
+	int i, tmp;
 
 	for (i = 0; i < n; i++)
 	{
 		n--;
-		x = a[i];
+		tmp = a[i];
 		a[i] = a[n];
-		a[n] = x;
+		a[n] = tmp;
 	}
 }
