@@ -12,6 +12,8 @@
  */
 char *_strpbrk(char *s, char *accept)
 {
+	char *tmp = accept;
+
 	while (s && accept && *s)
 	{
 		while (*accept)
@@ -21,6 +23,7 @@ char *_strpbrk(char *s, char *accept)
 
 			accept++;
 		}
+		accept = tmp; // point `accept` back to the first char
 		s++;
 	}
 	return (NULL);
