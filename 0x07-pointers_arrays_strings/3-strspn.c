@@ -11,26 +11,28 @@
  */
 unsigned int _strspn(char *s, char *accept)
 {
-	unsigned int i, n, value, check;
+	unsigned int count = 0, matched = 0;
+	char *tmp = accept;
 
-	value = 0;
-
-	for (i = 0; s[i] != '\0'; i++)
+	while (*s)
 	{
-		check = 0;
-
-		for (n = 0; accept[n] != '\0'; n++)
+		while (*accept)
 		{
-			if (accept[n] == s[i])
+			if (*accept == *s)
 			{
-				value++;
-				check = 1;
+				count++;
+				matched = 1;
+				break;
 			}
+			accept++;
 		}
+		if (!matched)
+			return (count);
 
-		if (check == 0)
-			return (value);
+		accept = tmp;
+		matched = 0;
+		s++;
 	}
 
-	return (value);
+	return (count);
 }
