@@ -23,7 +23,7 @@ char *_strpbrk(char *s, char *accept)
 
 			accept++;
 		}
-		accept = tmp; // point `accept` back to the first char
+		accept = tmp; /* point `accept` back to the first char */
 		s++;
 	}
 	return (NULL);
