@@ -12,7 +12,7 @@
  */
 char *_strpbrk(char *s, char *accept)
 {
-	while (*s)
+	while (s && accept && *s)
 	{
 		while (*accept)
 		{
