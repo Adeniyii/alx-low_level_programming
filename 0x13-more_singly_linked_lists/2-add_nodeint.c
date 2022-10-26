@@ -9,14 +9,24 @@
  */
 listint_t *add_nodeint(listint_t **head, const int n)
 {
-	listint_t *newNode = (listint_t *)malloc(sizeof(listint_t));
+	/* This does not work because, the new node is
+	garbage collected when this function returns.
+	It can only work if we return the new node itself from this function,
+	instead of the address to the new node.
 
-	if (!newNode)
+	listint_t new_node = { n, *head };
+	return (&new_node) */
+
+	listint_t *new_node;
+
+	new_node = malloc(sizeof(listint_t));
+
+	if (new_node == NULL)
 		return (NULL);
 
-	newNode->n = n;
-	newNode->next = *head;
-	*head = newNode;
+	new_node->n = n;
+	new_node->next = *head;
+	*head = new_node;
 
-	return (newNode);
+	return (new_node);
 }
