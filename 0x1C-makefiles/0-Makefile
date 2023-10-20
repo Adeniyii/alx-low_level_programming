@@ -1,4 +1,4 @@
-.PHONY: all school
+.PHONY: all
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic
