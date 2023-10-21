@@ -1,7 +1,7 @@
 # Task: 2. Makefile
 
 CC = gcc
-SRC = $(wildcard *.c)
+SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
 NAME = $(SRC:.c=)
 
