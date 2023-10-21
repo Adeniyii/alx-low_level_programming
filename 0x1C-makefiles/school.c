@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 
-int main(void)
+int school(void)
 {
 		printf("School boy\n");
 		return 0;

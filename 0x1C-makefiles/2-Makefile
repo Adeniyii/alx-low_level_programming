@@ -1,0 +1,21 @@
+# Task: 2. Makefile
+
+CC = gcc
+SRC = $(wildcard *.c)
+BIN = $(SRC:.c=.o)
+NAME = $(SRC:.c=)
+
+all: link
+
+# make object files
+%.o: %.c
+	@echo "Compiling $< to $@"
+	${CC} -c $< -o $@
+
+# link object files
+link: $(BIN)
+	@echo "linking ..."
+	${CC} $(BIN) -o school
+
+clean:
+	rm *.o
