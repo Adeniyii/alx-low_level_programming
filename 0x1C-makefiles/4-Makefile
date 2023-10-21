@@ -12,7 +12,7 @@ all: link
 %.o: %.c
 	${CC} -c $< -o $@ ${CFLAGS}
 
-link:
+link: $(OBJ)
 	${CC} $(OBJ) -o ${NAME} ${CFLAGS}
 
 # delete exe, vim and emacs temp files
