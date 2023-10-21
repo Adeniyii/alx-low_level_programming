@@ -13,7 +13,7 @@ all: link
 	${CC} -c $< -o $@ ${CFLAGS}
 
 link:
-	${CC} $(OBJ) -o school ${CFLAGS}
+	${CC} $(OBJ) -o ${NAME} ${CFLAGS}
 
 # delete exe, vim and emacs temp files
 clean:
