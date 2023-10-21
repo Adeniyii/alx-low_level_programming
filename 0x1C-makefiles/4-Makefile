@@ -1,7 +1,7 @@
 .PHONE: all link clean oclean fclean re
 
 CC = gcc
-SRC = main.c school
+SRC = main.c school.c
 OBJ = $(SRC:%.c=%.o)
 NAME = school
 RM = rm
