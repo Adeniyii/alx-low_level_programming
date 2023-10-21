@@ -1,10 +1,9 @@
 .PHONY: all
 
 CC = gcc
-SRC := $(wildcard *.c)
-BIN := $(SRC:%.c=%)
+SRC := main.c school.c
 
-all: ${BIN}
+all: school
 
-%:
+school:
 	${CC} -o $@ ${SRC}
