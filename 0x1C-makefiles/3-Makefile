@@ -1,0 +1,29 @@
+.PHONY = all link clean oclean fclean re
+
+CC = gcc
+SRC = main.c school.c
+OBJ = $(SRC:%.c=%.o)
+NAME = $(SRC:%.C=%)
+RM = rm -f
+EXE = school
+
+all: link
+
+%.o: %.c
+	${CC} -c $< -o $@
+
+link: $(OBJ)
+	${CC} $(OBJ) -o ${EXE}
+
+# delete exe, vim and emacs temp files
+clean:
+	${RM} ${EXE} *~ \#* *#
+
+# delete object files
+oclean:
+	${RM} $(OBJ)
+
+fclean: clean oclean
+
+# force recompilation
+re: fclean all
