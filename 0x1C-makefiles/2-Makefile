@@ -2,7 +2,7 @@
 
 CC = gcc
 SRC = $(wildcard *.c)
-BIN = $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
 NAME = $(SRC:.c=)
 
 all: link
@@ -13,9 +13,9 @@ all: link
 	${CC} -c $< -o $@
 
 # link object files
-link: $(BIN)
+link: $(OBJ)
 	@echo "linking ..."
-	${CC} $(BIN) -o school
+	${CC} $(OBJ) -o school
 
 clean:
 	rm *.o
